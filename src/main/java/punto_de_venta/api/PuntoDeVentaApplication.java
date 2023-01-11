@@ -10,8 +10,4 @@ public class PuntoDeVentaApplication {
 		SpringApplication.run(PuntoDeVentaApplication.class, args);
 	}
 	
-	public void probandoMockito() {
-		System.out.println("Test");
-	}
-
 }
