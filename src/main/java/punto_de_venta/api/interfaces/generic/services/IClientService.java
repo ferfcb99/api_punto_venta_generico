@@ -2,9 +2,9 @@ package punto_de_venta.api.interfaces.generic.services;
 
 import java.util.List;
 
-public interface ICategoryService<T> {
-	
-	public List<T> getAll();
+public interface IClientService<T> {
+    
+    public List<T> getAll();
 	
 	public T getById(Long id);
 	
@@ -12,6 +12,5 @@ public interface ICategoryService<T> {
 	
 	public T deleteById(Long id);
 	
+
 }
-
-
