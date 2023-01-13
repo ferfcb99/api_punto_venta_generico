@@ -5,12 +5,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import punto_de_venta.api.entities.generic.Category;
+import punto_de_venta.api.entities.generic.Client;
 
 @Repository
-public interface CategoryDao extends JpaRepository<Category, Long>{
-	
-	@Query("SELECT category FROM Category category WHERE category.id = :id")
-	public Category getById(@PathVariable Long id);
+public interface ClientDao extends JpaRepository<Client, Long>{
 
+	@Query("SELECT client FROM Client client WHERE client.id = :id")
+	public Client getById(@PathVariable Long id);
+	
 }

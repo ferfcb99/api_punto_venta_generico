@@ -5,12 +5,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import punto_de_venta.api.entities.generic.Category;
+import punto_de_venta.api.entities.generic.Provider;
 
 @Repository
-public interface CategoryDao extends JpaRepository<Category, Long>{
-	
-	@Query("SELECT category FROM Category category WHERE category.id = :id")
-	public Category getById(@PathVariable Long id);
+public interface ProviderDao extends JpaRepository<Provider, Long>{
 
+	@Query("SELECT provider FROM Provider provider WHERE provider.id = :id")
+	public Provider getById(@PathVariable Long id);
+	
 }
