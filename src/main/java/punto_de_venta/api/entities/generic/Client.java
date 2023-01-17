@@ -1,14 +1,21 @@
 package punto_de_venta.api.entities.generic;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,7 +31,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "client")
-public class Client {
+public class Client implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,6 +57,11 @@ public class Client {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
 	private Set<Direction> directions = new HashSet<Direction>();
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(foreignKey = @ForeignKey(name = "client_id", value = ConstraintMode.CONSTRAINT),
+				inverseForeignKey = @ForeignKey(name = "product_id", value = ConstraintMode.CONSTRAINT))
+	private List<Product> products = new ArrayList<Product>();
 }
 
 

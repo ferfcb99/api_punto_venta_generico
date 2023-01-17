@@ -1,5 +1,9 @@
 package punto_de_venta.api.entities.generic;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
@@ -23,7 +28,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "product")
-public class Product {
+public class Product implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,5 +58,8 @@ public class Product {
 	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
 	@JoinColumn(name = "provider_id")
 	private Provider provider;
+	
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "products")
+	private List<Client> clients = new ArrayList<Client>();
 	
 }

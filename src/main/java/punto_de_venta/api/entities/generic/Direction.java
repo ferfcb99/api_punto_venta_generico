@@ -1,5 +1,7 @@
 package punto_de_venta.api.entities.generic;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,8 +28,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "direction")
-public class Direction {
+public class Direction implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "direction_id", nullable = false, unique = true)
