@@ -31,27 +31,27 @@ public class Provider implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "category_id", nullable = false, unique = true)
+	@Column(name = "provider_id", nullable = false, unique = true)
 	private Long provider_id;
 	
 	@NonNull
-	@Column(name = "provider_name", nullable = false, unique = true, length = 40)
+	@Column(name = "provider_name", nullable = false, unique = false, length = 40)
 	private String provider_name;
 	
 	@NotNull
-	@Column(name = "provider_last_name", nullable = false, unique = true, length = 40)
+	@Column(name = "provider_last_name", nullable = false, unique = false, length = 40)
 	private String provider_last_name;
 	
 	@NotNull
-	@Column(name = "provider_tel_number", nullable = false, unique = true, length = 15)
+	@Column(name = "provider_tel_number", nullable = false, unique = false, length = 15)
 	private String provider_tel_number;
 	
 	@NotNull
-	@Column(name = "provider_contact", nullable = false, unique = true, length = 200)
+	@Column(name = "provider_contact", nullable = false, unique = false, length = 200)
 	private String provider_contact;
 	
 	@NotNull
-	@Column(name = "provider_direction", nullable = true, unique = true, length = 500)
+	@Column(name = "provider_direction", nullable = true, unique = false, length = 500)
 	private String provider_direction;
 	
 }

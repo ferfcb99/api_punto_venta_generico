@@ -38,7 +38,7 @@ public class Category implements Serializable{
 	private String category_name;
 	
 	@NotNull
-	@Column(name = "category_description", nullable = false, unique = true, length = 100)
+	@Column(name = "category_description", nullable = false, unique = false, length = 100)
 	private String category_description;
 	
 }
