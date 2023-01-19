@@ -6,8 +6,10 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +18,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -40,26 +44,29 @@ public class Product implements Serializable{
 	@Column(name = "product_id", nullable = false, unique = true)
 	private Long product_id;
 	
-	@Column(name = "product_name", nullable = false, unique = true, length = 50)
+	@Column(name = "product_name", nullable = false, unique = false, length = 50)
 	private String product_name;
 	
 	@Digits(/* enteros */ integer = 6, /* decimales */ fraction = 3)
-	@Column(name = "product_price", nullable = false, unique = true)
+	@Column(name = "product_price", nullable = false, unique = false)
 	private Double product_price;
 	
 
-	@Column(name = "product_stock", nullable = false, unique = true)
+	@Column(name = "product_stock", nullable = false, unique = false)
 	private Integer product_stock;
 
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
-	@JoinColumn(name = "category_id")
+	@JoinColumn(foreignKey = @ForeignKey(name = "category_id", value = ConstraintMode.CONSTRAINT))
 	private Category category;
 	
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
-	@JoinColumn(name = "provider_id")
+	@JoinColumn(foreignKey = @ForeignKey(name = "provider_id", value = ConstraintMode.CONSTRAINT))
 	private Provider provider;
 	
+	/*
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "products")
 	private List<Client> clients = new ArrayList<Client>();
-	
+	*/
 }

@@ -44,24 +44,28 @@ public class Client implements Serializable{
 	private Long client_id;
 	
 	@NonNull
-	@Column(name = "client_name", nullable = false, unique = true, length = 40)
+	@Column(name = "client_name", nullable = false, unique = false, length = 40)
 	private String client_name;
 	
 	@NonNull
-	@Column(name = "client_last_name", nullable = false, unique = true, length = 40)
+	@Column(name = "client_last_name", nullable = false, unique = false, length = 40)
 	private String client_last_name;
 	
 	@NonNull
-	@Column(name = "client_tel_number", nullable = false, unique = true, length = 15)
+	@Column(name = "client_tel_number", nullable = false, unique = false, length = 15)
 	private String client_tel_number;
+	
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
 	private Set<Direction> directions = new HashSet<Direction>();
 	
+	
+	/*
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(foreignKey = @ForeignKey(name = "client_id", value = ConstraintMode.CONSTRAINT),
 				inverseForeignKey = @ForeignKey(name = "product_id", value = ConstraintMode.CONSTRAINT))
 	private List<Product> products = new ArrayList<Product>();
+	*/
 }
 
 

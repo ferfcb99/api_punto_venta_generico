@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
@@ -34,33 +35,33 @@ public class Direction implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "direction_id", nullable = false, unique = true)
 	private Long direction_id;
 	
 	@NonNull
-	@Column(name = "direction_state", nullable = false, unique = true, length = 40)
+	@Column(name = "direction_state", nullable = false, unique = false, length = 40)
 	private String direction_state;
 	
 	@NonNull
-	@Column(name = "direction_internal_num", nullable = false, unique = true, length = 40)
+	@Column(name = "direction_internal_num", nullable = false, unique = false, length = 40)
 	private String direction_internal_num;
 	
 	@NonNull
-	@Column(name = "direction_external_num", nullable = false, unique = true, length = 40)
+	@Column(name = "direction_external_num", nullable = false, unique = false, length = 40)
 	private String direction_external_num;
 	
 	@NonNull
-	@Column(name = "direction_references", nullable = false, unique = true, length = 40)
+	@Column(name = "direction_references", nullable = false, unique = false, length = 40)
 	private String direction_references;
 	
-	/*
 	@JsonIgnore
 	@Setter(onMethod_ = @JsonProperty)
 	@Getter(onMethod_ = @JsonIgnore)
-	*/
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 	@JoinColumn(foreignKey = @ForeignKey(name = "client_id"))
 	private Client client;
 	

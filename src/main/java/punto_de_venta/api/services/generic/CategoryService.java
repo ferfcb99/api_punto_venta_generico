@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import punto_de_venta.api.daos.generic.CategoryDao;
 import punto_de_venta.api.entities.generic.Category;
+import punto_de_venta.api.exceptions.generic.CategoryException;
 import punto_de_venta.api.interfaces.generic.services.ICategoryService;
 
 @Service
@@ -17,8 +18,9 @@ public class CategoryService implements ICategoryService<Category> {
 	CategoryDao categoryDao;
 
 	@Override
-	public List<Category> getAll() {
-		List<Category> categories = this.categoryDao.findAll();
+	public List<Category> getAll() throws CategoryException{
+		List<Category> categories;
+		categories = this.categoryDao.findAll();
 		return categories;
 	}
 

@@ -1,0 +1,43 @@
+Productos
+	id_producto
+	nombre_producto
+	precio_producto
+	stock_producto
+
+Categorias 
+	id_categoria
+	nombre_categoria
+	descripcion_categoria
+
+Proveedor
+	id_proveedor
+	nombre_proveedor
+	apellido_proveedor
+	telefono_proveedor
+	direcciones_proveedor
+	contacto_proveedor
+
+Cliente
+	id_cliente
+	nombre_cliente
+	apellido_cliente
+	telefono_cliente
+
+Direccion
+	id_direccion
+	estado_direccion
+	calle_direccion
+	numero_interior_direccion
+	numero_exterior_direccion
+	referencias_direccion
+	
+	producto 1:N   1:1 categoria
+	
+	producto 1:N   1:1 proveedor
+	
+	producto 1:N   0:N cliente
+	
+	cliente  1:1   1:N direccion
+		
+
+	
