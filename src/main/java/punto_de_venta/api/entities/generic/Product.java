@@ -3,6 +3,7 @@ package punto_de_venta.api.entities.generic;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,7 +20,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -55,6 +58,7 @@ public class Product implements Serializable{
 	@Column(name = "product_stock", nullable = false, unique = false)
 	private Integer product_stock;
 
+	/*
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
 	@JoinColumn(foreignKey = @ForeignKey(name = "category_id", value = ConstraintMode.CONSTRAINT))
@@ -64,9 +68,12 @@ public class Product implements Serializable{
 	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
 	@JoinColumn(foreignKey = @ForeignKey(name = "provider_id", value = ConstraintMode.CONSTRAINT))
 	private Provider provider;
+	*/
 	
-	/*
+	@JsonIgnore
+	@Setter(onMethod_ = @JsonProperty)
+	@Getter(onMethod_ = @JsonIgnore)
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "products")
 	private List<Client> clients = new ArrayList<Client>();
-	*/
+	
 }

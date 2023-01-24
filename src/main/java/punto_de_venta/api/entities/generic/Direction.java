@@ -57,9 +57,7 @@ public class Direction implements Serializable{
 	@Column(name = "direction_references", nullable = false, unique = false, length = 40)
 	private String direction_references;
 	
-	@JsonIgnore
-	@Setter(onMethod_ = @JsonProperty)
-	@Getter(onMethod_ = @JsonIgnore)
+	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 	@JoinColumn(foreignKey = @ForeignKey(name = "client_id"))

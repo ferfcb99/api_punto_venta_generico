@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import punto_de_venta.api.dto.Response;
 import punto_de_venta.api.entities.generic.Category;
+import punto_de_venta.api.exceptions.generic.CategoryException;
 import punto_de_venta.api.interfaces.generic.controllers.ICategoryController;
 
 import punto_de_venta.api.publics.generic.Constants;
@@ -33,7 +34,7 @@ public class CategoryController implements ICategoryController<Category> {
 	@Override
 	@RequestMapping(method = RequestMethod.GET, value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<Response<List<Category>>> getAll() {
+	public ResponseEntity<Response<List<Category>>> getAll() throws CategoryException{
 		return ResponseEntity.ok(new Response<>(String.valueOf(HttpStatus.OK), this.categoryService.getAll(),
 				Constants.GET_DATA_SUCCESSFULLY));
 	}

@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
@@ -18,6 +19,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -55,17 +59,18 @@ public class Client implements Serializable{
 	@Column(name = "client_tel_number", nullable = false, unique = false, length = 15)
 	private String client_tel_number;
 	
-	
+	@JsonIgnore
+	@Setter(onMethod_ = @JsonProperty)
+	@Getter(onMethod_ = @JsonIgnore)
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
 	private Set<Direction> directions = new HashSet<Direction>();
 	
 	
-	/*
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST})
 	@JoinTable(foreignKey = @ForeignKey(name = "client_id", value = ConstraintMode.CONSTRAINT),
 				inverseForeignKey = @ForeignKey(name = "product_id", value = ConstraintMode.CONSTRAINT))
 	private List<Product> products = new ArrayList<Product>();
-	*/
+	
 }
 
 
