@@ -3,7 +3,6 @@ package punto_de_venta.api.entities.generic;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -58,7 +57,7 @@ public class Product implements Serializable{
 	@Column(name = "product_stock", nullable = false, unique = false)
 	private Integer product_stock;
 
-	/*
+	
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
 	@JoinColumn(foreignKey = @ForeignKey(name = "category_id", value = ConstraintMode.CONSTRAINT))
@@ -68,7 +67,7 @@ public class Product implements Serializable{
 	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
 	@JoinColumn(foreignKey = @ForeignKey(name = "provider_id", value = ConstraintMode.CONSTRAINT))
 	private Provider provider;
-	*/
+	
 	
 	@JsonIgnore
 	@Setter(onMethod_ = @JsonProperty)

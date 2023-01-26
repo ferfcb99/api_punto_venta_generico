@@ -3,6 +3,8 @@ package punto_de_venta.api.services.generic;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ import punto_de_venta.api.interfaces.generic.services.ICategoryService;
 
 @Service
 public class CategoryService implements ICategoryService<Category> {
+	
+	Logger logger = LogManager.getLogger(CategoryService.class);
 
 	@Autowired
 	CategoryDao categoryDao;
@@ -20,8 +24,15 @@ public class CategoryService implements ICategoryService<Category> {
 	@Override
 	public List<Category> getAll() throws CategoryException{
 		List<Category> categories;
-		categories = this.categoryDao.findAll();
-		return categories;
+		try {
+			categories = this.categoryDao.findAll();
+			logger.info("Sin error al obtener categorias");
+		}catch(Exception e) {
+			logger.error("Error");
+			return null;
+		}
+			
+			return categories;
 	}
 
 	@Override

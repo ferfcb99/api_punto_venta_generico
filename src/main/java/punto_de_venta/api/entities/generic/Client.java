@@ -59,6 +59,7 @@ public class Client implements Serializable{
 	@Column(name = "client_tel_number", nullable = false, unique = false, length = 15)
 	private String client_tel_number;
 	
+	
 	@JsonIgnore
 	@Setter(onMethod_ = @JsonProperty)
 	@Getter(onMethod_ = @JsonIgnore)
@@ -66,7 +67,7 @@ public class Client implements Serializable{
 	private Set<Direction> directions = new HashSet<Direction>();
 	
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST})
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
 	@JoinTable(foreignKey = @ForeignKey(name = "client_id", value = ConstraintMode.CONSTRAINT),
 				inverseForeignKey = @ForeignKey(name = "product_id", value = ConstraintMode.CONSTRAINT))
 	private List<Product> products = new ArrayList<Product>();
